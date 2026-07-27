@@ -1,0 +1,567 @@
+/* ============================================================
+   GLOW SKY CANDLES — hoja de estilos
+   Lienzo fijo de 1440px · sin media queries
+   ============================================================ */
+
+:root {
+  --cream: #F7F2EB;
+  --ink: #1A1A1A;
+  --rose: #D8B7C3;
+  --gold: #C6A664;
+  --white: #FFFFFF;
+  --shadow: 0 20px 60px rgba(26, 26, 26, .08);
+  --shadow-deep: 0 30px 80px rgba(26, 26, 26, .14);
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 1440px;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: .08em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.15;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+section {
+  scroll-margin-top: 90px;
+}
+
+::selection {
+  background: var(--rose);
+  color: var(--ink);
+}
+
+/* ---------- Utilidades ---------- */
+
+.eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .35em;
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 96px;
+}
+
+.section-head h2 {
+  font-size: 52px;
+}
+
+.btn {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: 17px 46px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: transparent;
+  transition: background-color 400ms ease, color 400ms ease;
+}
+
+.btn:hover {
+  background: var(--gold);
+  color: var(--white);
+}
+
+/* Revelado al hacer scroll (activado desde script.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 1440px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 120px;
+  background: transparent;
+  color: var(--cream);
+  transition: background-color 400ms ease, color 400ms ease, box-shadow 400ms ease;
+}
+
+.navbar.scrolled {
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: .5em;
+  color: var(--gold);
+}
+
+.nav-links {
+  display: flex;
+  gap: 48px;
+}
+
+.nav-links a {
+  position: relative;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  transition: color 400ms ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--ease-out);
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: -120px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 240px);
+  object-fit: cover;
+  will-change: transform;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(26, 26, 26, .55) 0%,
+    rgba(26, 26, 26, .35) 45%,
+    rgba(26, 26, 26, .68) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--cream);
+}
+
+.logo-mark {
+  width: 76px;
+  height: 76px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 44px;
+}
+
+.logo-mark span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: .1em;
+  color: var(--gold);
+  padding-left: .1em;
+}
+
+.hero h1 {
+  font-size: 88px;
+  font-weight: 300;
+  margin-bottom: 52px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.btn-hero {
+  color: var(--cream);
+}
+
+/* Aparición escalonada al cargar (200ms entre elementos) */
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out) both;
+}
+
+.delay-1 { animation-delay: 200ms; }
+.delay-2 { animation-delay: 400ms; }
+.delay-3 { animation-delay: 600ms; }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Nosotros ---------- */
+
+.about {
+  background: var(--cream);
+  padding: 160px 120px;
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 110px;
+  align-items: center;
+}
+
+.about-media img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.about-text {
+  max-width: 480px;
+}
+
+.about-text h2 {
+  font-size: 52px;
+  margin-bottom: 30px;
+}
+
+.about-text h2::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: var(--gold);
+  margin-top: 26px;
+}
+
+/* ---------- Colecciones de cine ---------- */
+
+.collections {
+  padding: 160px 0;
+}
+
+.collections .section-head {
+  padding: 0 120px;
+}
+
+.film-row {
+  display: flex;
+  height: 60vh;
+  min-height: 540px;
+}
+
+.film-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.film-media {
+  flex: 0 0 55%;
+  overflow: hidden;
+  border-radius: 0 16px 16px 0;
+}
+
+.film-row.reverse .film-media {
+  border-radius: 16px 0 0 16px;
+}
+
+.film-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 800ms ease;
+}
+
+.film-row:hover .film-media img {
+  transform: scale(1.05);
+}
+
+.film-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 120px;
+}
+
+.film-text h2 {
+  font-size: 52px;
+  margin-bottom: 26px;
+}
+
+.film-text p {
+  max-width: 420px;
+  margin-bottom: 44px;
+}
+
+/* ---------- Galería ---------- */
+
+.gallery {
+  background: var(--white);
+  padding: 160px 120px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+/* La transición incluye opacity para no pisar la del revelado (.reveal) */
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 500ms var(--ease-out), box-shadow 500ms var(--ease-out),
+    opacity 700ms var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-deep);
+}
+
+/* .reveal.visible ya deja transform en 0; el hover lo sobreescribe */
+.card.reveal.visible:hover {
+  transform: translateY(-8px);
+}
+
+.card-media {
+  height: 320px;
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 800ms ease;
+}
+
+.card:hover .card-media img {
+  transform: scale(1.06);
+}
+
+.card-body {
+  padding: 34px 30px 40px;
+  text-align: center;
+}
+
+.card-body h3 {
+  font-size: 27px;
+}
+
+.card-body h3::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 1px;
+  background: var(--gold);
+  margin: 14px auto 0;
+  transform: scaleX(0);
+  transition: transform 400ms var(--ease-out);
+}
+
+.card:hover .card-body h3::after {
+  transform: scaleX(1);
+}
+
+.notes {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  color: var(--gold);
+  margin-top: 16px;
+  line-height: 1.7;
+}
+
+/* ---------- Contacto ---------- */
+
+.contact {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 160px 120px;
+  text-align: center;
+}
+
+.contact .section-head {
+  margin-bottom: 80px;
+}
+
+.contact-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .35em;
+  color: var(--gold);
+}
+
+.contact-value {
+  position: relative;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  letter-spacing: .04em;
+  color: var(--cream);
+  transition: color 400ms ease;
+  padding-bottom: 8px;
+}
+
+.contact-value::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--ease-out);
+}
+
+.contact-item:hover .contact-value {
+  color: var(--gold);
+}
+
+.contact-item:hover .contact-value::after {
+  transform: scaleX(1);
+}
+
+.divider {
+  width: 1px;
+  height: 58px;
+  background: var(--gold);
+  opacity: .35;
+  margin: 0 76px;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background: var(--cream);
+  text-align: center;
+  padding: 88px 120px;
+}
+
+.footer-brand {
+  align-items: center;
+}
+
+.hairline {
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: var(--gold);
+  margin: 30px auto;
+}
+
+.footer p {
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
